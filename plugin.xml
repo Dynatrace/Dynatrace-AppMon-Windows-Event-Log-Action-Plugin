@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<!-- plugin.xml file written by dynaTrace Client 5.6.0 -->
+<plugin>
+  <extension point="com.dynatrace.diagnostics.pdk.pluginconfig" id="com.compuwareapm.community.plugin.windowseventlogaction" name="Windows Event Log Action Plugin">
+    <information>
+      <category value="" />
+      <displayname value="Windows Event Log Action Plugin" />
+      <description value="Writes dynaTrace Incidents into Microsoft Windows Event Log" />
+      <supportlevel value="unsupported" />
+    </information>
+    <configuration>
+      <property key="com.compuwareapm.community.windowseventlogactionplugin.property.system" label="System" type="string" description="Optional. Specifies the remote system to connect to." default="" multiline="false" />
+      <property key="com.compuwareapm.community.windowseventlogactionplugin.property.user" label="User" type="string" description="Optional. [domain\]user specifies the user context under which the command should execute." default="" multiline="false" />
+      <property key="com.compuwareapm.community.windowseventlogactionplugin.property.password" label="Password" type="password" description="Optional. Specifies the password for the given user context." default="" />
+      <property key="com.compuwareapm.community.windowseventlogactionplugin.property.eventlogname" label="Event Log Name" type="string" description="Specifies the event log to create an event in." default="APPLICATION" multiline="false" />
+      <property key="com.compuwareapm.community.windowseventlogactionplugin.property.eventlogtype" label="Type" type="list" description="Specifies the type of event to create. Valid types: SUCCESS, ERROR, WARNING, INFORMATION." default="SUCCESS">
+        <list>
+          <item value="SUCCESS" />
+          <item value="ERROR" />
+          <item value="WARNING" />
+          <item value="INFORMATION" />
+        </list>
+      </property>
+      <property key="com.compuwareapm.community.windowseventlogactionplugin.property.source" label="Source" type="string" description="Specifies the source to use for the event (if not specified, source will default to 'eventcreate'). A valid source can be any string and should represent the application or component that is generating the event." default="Compuware dynaTrace" multiline="false" />
+      <property key="com.compuwareapm.community.windowseventlogactionplugin.property.id" label="ID" type="long" description="Specifies the event ID for the event. A valid custom message ID is in the range of 1 - 1000." default="1" />
+      <property key="com.compuwareapm.community.windowseventlogactionplugin.property.description" label="Description" type="string" description="Specifies the description text for the new event." default="dynaTrace Server Name: %INCIDENT_SERVER_NAME%&#xD;&#xA;dynaTrace System Profile: %SYSTEM_PROFILE%&#xD;&#xA;&#xD;&#xA;Severity: %INCIDENT_SEVERITY%&#xD;&#xA;Incident Name: %INCIDENT_NAME%&#xD;&#xA;Incident Description: %INCIDENT_DESCRIPTION%&#xD;&#xA;&#xD;&#xA;Message: %INCIDENT_MESSAGE%&#xD;&#xA;&#xD;&#xA;Start Time: %INCIDENT_START_TIME%&#xD;&#xA;End Time: %INCIDENT_END_TIME%&#xD;&#xA;Duration: %INCIDENT_DURATION%&#xD;&#xA;&#xD;&#xA;Recorded Session ID: %INCIDENT_RECORDED_SESSION_ID%&#xD;&#xA;Recorded Session Name: %INCIDENT_RECORDED_SESSION_NAME%&#xD;&#xA;" multiline="true" />
+    </configuration>
+  </extension>
+  <extension point="com.dynatrace.diagnostics.pdk.action" id="com.compuwareapm.community.plugin.WindowsEventLogAction.action" name="Windows Event Log Action Plugin">
+    <plugin configid="com.compuwareapm.community.plugin.windowseventlogaction" class="com.compuwareapm.community.windowseventlogactionplugin.WindowsEventLogAction" />
+  </extension>
+</plugin>
+
